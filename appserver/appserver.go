@@ -6,26 +6,20 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/manojpethe/itsm-service/appserver/modules/projects"
 	"github.com/manojpethe/itsm-service/appserver/modules/users"
-	"github.com/manojpethe/itsm-service/appserver/schema"
-
-	"gorm.io/driver/sqlite"
-	"gorm.io/gorm"
 )
-
-var db *gorm.DB
 
 func StartServer() {
 
-	var errDBconnect error
-	db, errDBconnect = gorm.Open(sqlite.Open(schema.Databasefile), &gorm.Config{})
-	if errDBconnect != nil {
-		panic("failed to connect database")
-	}
+	// var errDBconnect error
+	// db, errDBconnect = gorm.Open(sqlite.Open(schema.Databasefile), &gorm.Config{})
+	// if errDBconnect != nil {
+	// 	panic("failed to connect database")
+	// }
 
-	db.AutoMigrate(&schema.User{})
-	db.AutoMigrate(&schema.Project{})
-	db.AutoMigrate(&schema.Queue{})
-	db.AutoMigrate(&schema.QueueUserMap{})
+	// db.AutoMigrate(&schema.User{})
+	// db.AutoMigrate(&schema.Project{})
+	// db.AutoMigrate(&schema.Queue{})
+	// db.AutoMigrate(&schema.QueueUserMap{})
 
 	// Initialize a Gin router with default middleware (Logger and Recovery)
 	appServer := gin.Default()

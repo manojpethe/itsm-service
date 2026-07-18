@@ -3,6 +3,7 @@ package appserver
 import (
 	"net/http"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/manojpethe/itsm-service/appserver/modules/projects"
 	"github.com/manojpethe/itsm-service/appserver/modules/users"
@@ -24,6 +25,9 @@ func StartServer() {
 	// Initialize a Gin router with default middleware (Logger and Recovery)
 	appServer := gin.Default()
 
+	// enabled for development
+	appServer.Use(cors.Default())
+
 	appServer.LoadHTMLGlob("html/*")
 
 	appServer.GET("/", func(c *gin.Context) {
@@ -43,6 +47,7 @@ func StartServer() {
 	// users endoint config
 	appServer.GET("/api/users", users.GetUsers)
 	appServer.GET("/api/users/:id", users.GetUser)
+	appServer.PATCH("/api/users/:id", users.UpdateUser)
 	appServer.POST("/api/users", users.CreateUser)
 	appServer.POST("/api/users/auth", users.AuthUser)
 

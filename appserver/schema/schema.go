@@ -7,13 +7,14 @@ import (
 const Databasefile = "itsm.db"
 
 type User struct {
-	gorm.Model // adds ID, CreatedAt, UpdatedAt, DeletedAt fields
-	Name       string
-	Password   string
-	Phone      string
-	Email      string
-	Superuser  bool
-	Active     bool
+	gorm.Model        // adds ID, CreatedAt, UpdatedAt, DeletedAt fields
+	Name       string `json:"name"`
+	Username   string `json:"username"`
+	Password   string `json:"password"`
+	Phone      string `json:"phone"`
+	Email      string `json:"email"`
+	Superuser  bool   `json:"superuser"`
+	Active     bool   `json:"active"`
 }
 
 type Project struct {

@@ -1,8 +1,6 @@
 package userService
 
 import (
-	"fmt"
-
 	"github.com/manojpethe/itsm-service/appserver/repository"
 
 	"github.com/manojpethe/itsm-service/appserver/schema"
@@ -24,16 +22,22 @@ type Credential struct {
 }
 
 func GetUsersService() []schema.User {
-	users := []schema.User{
-		{Name: "Alice", Phone: "92929292"},
-		{Name: "Bob", Phone: "92929292"},
-	}
+	var users = repository.GetUsers()
 	return users
 }
 
 func AuthUserService(credential Credential) schema.User {
-	fmt.Println("Debug...", credential.Username, credential.Password)
 	var foundUser = repository.AuthenticateUser(credential.Username, credential.Password)
-	fmt.Println("Debug service", foundUser)
 	return foundUser
+}
+
+func CreateUser(newUser schema.User) schema.User {
+	// var createdUser schema.User
+	createdUser := repository.CreateUser(newUser)
+	return createdUser
+}
+
+func UpdateUser(userID int, updateUser schema.User) schema.User {
+	updatedUser := repository.UpdateUser(userID, updateUser)
+	return updatedUser
 }

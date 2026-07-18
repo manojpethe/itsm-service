@@ -3,14 +3,30 @@ package appserver
 import (
 	"net/http"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/manojpethe/itsm-service/appserver/modules/projects"
 	"github.com/manojpethe/itsm-service/appserver/modules/users"
 )
 
 func StartServer() {
+
+	// var errDBconnect error
+	// db, errDBconnect = gorm.Open(sqlite.Open(schema.Databasefile), &gorm.Config{})
+	// if errDBconnect != nil {
+	// 	panic("failed to connect database")
+	// }
+
+	// db.AutoMigrate(&schema.User{})
+	// db.AutoMigrate(&schema.Project{})
+	// db.AutoMigrate(&schema.Queue{})
+	// db.AutoMigrate(&schema.QueueUserMap{})
+
 	// Initialize a Gin router with default middleware (Logger and Recovery)
 	appServer := gin.Default()
+
+	// enabled for development
+	appServer.Use(cors.Default())
 
 	appServer.LoadHTMLGlob("html/*")
 
@@ -30,7 +46,10 @@ func StartServer() {
 
 	// users endoint config
 	appServer.GET("/api/users", users.GetUsers)
+	appServer.GET("/api/users/:id", users.GetUser)
+	appServer.PATCH("/api/users/:id", users.UpdateUser)
 	appServer.POST("/api/users", users.CreateUser)
+	appServer.POST("/api/users/auth", users.AuthUser)
 
 	// projects endoint config
 	appServer.GET("/api/projects", projects.GetProjects)

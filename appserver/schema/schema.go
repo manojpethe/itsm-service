@@ -14,7 +14,7 @@ type User struct {
 	Phone      string `json:"phone"`
 	Email      string `json:"email"`
 	Superuser  bool   `json:"superuser"`
-	Active     bool   `json:"active"`
+	Active     *bool  `json:"active" gorm:"default:true"`
 }
 
 type Project struct {

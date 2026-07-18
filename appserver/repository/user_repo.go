@@ -1,6 +1,10 @@
 package repository
 
-import "github.com/manojpethe/itsm-service/appserver/schema"
+import (
+	"fmt"
+
+	"github.com/manojpethe/itsm-service/appserver/schema"
+)
 
 func AuthenticateUser(username string, password string) schema.User {
 	Connect()
@@ -16,6 +20,7 @@ func CreateUser(newUser schema.User) schema.User {
 
 func UpdateUser(userID int, updateUser schema.User) schema.User {
 	var user schema.User
+	fmt.Println(&updateUser.Active)
 	DB.Model(&user).Where("id = ?", userID).Updates(updateUser)
 	return updateUser
 }

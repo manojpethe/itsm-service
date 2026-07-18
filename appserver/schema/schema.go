@@ -19,8 +19,8 @@ type User struct {
 
 type Project struct {
 	gorm.Model
-	Title string
-	Info  string
+	Title string `json:"title"`
+	Info  string `json:"info"`
 }
 
 type Queue struct {

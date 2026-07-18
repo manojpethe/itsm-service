@@ -6,16 +6,6 @@ import (
 	"github.com/manojpethe/itsm-service/appserver/schema"
 )
 
-// type User struct {
-// 	gorm.Model // adds ID, CreatedAt, UpdatedAt, DeletedAt fields
-// 	Name       string
-// 	Password   string
-// 	Phone      string
-// 	Email      string
-// 	Superuser  bool
-// 	Active     bool
-// }
-
 type Credential struct {
 	Username string `json:"username"`
 	Password string `json:"password"`

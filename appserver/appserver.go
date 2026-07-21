@@ -6,21 +6,20 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/manojpethe/itsm-service/appserver/modules/projects"
+	"github.com/manojpethe/itsm-service/appserver/modules/queues"
 	"github.com/manojpethe/itsm-service/appserver/modules/users"
+	// "github.com/manojpethe/itsm-service/appserver/repository"
+	// "github.com/manojpethe/itsm-service/appserver/schema"
 )
 
 func StartServer() {
 
-	// var errDBconnect error
-	// db, errDBconnect = gorm.Open(sqlite.Open(schema.Databasefile), &gorm.Config{})
-	// if errDBconnect != nil {
-	// 	panic("failed to connect database")
-	// }
+	// repository.Connect()
 
-	// db.AutoMigrate(&schema.User{})
-	// db.AutoMigrate(&schema.Project{})
-	// db.AutoMigrate(&schema.Queue{})
-	// db.AutoMigrate(&schema.QueueUserMap{})
+	// repository.DB.AutoMigrate(&schema.User{})
+	// repository.DB.AutoMigrate(&schema.Project{})
+	// repository.DB.AutoMigrate(&schema.Queue{})
+	// repository.DB.AutoMigrate(&schema.QueueUserMap{})
 
 	// Initialize a Gin router with default middleware (Logger and Recovery)
 	appServer := gin.Default()
@@ -54,6 +53,9 @@ func StartServer() {
 	// projects endoint config
 	appServer.GET("/api/projects", projects.GetProjects)
 	appServer.POST("/api/projects", projects.CreateProject)
+
+	appServer.GET("/api/queues", queues.GetQueues)
+	appServer.POST("/api/queues", queues.CreateQueue)
 
 	// Start and run the server on localhost:8080
 	appServer.Run()

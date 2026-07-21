@@ -25,12 +25,12 @@ type Project struct {
 
 type Queue struct {
 	gorm.Model
-	Name      string
-	ProjectId string
+	Name      string `json:"name"`
+	ProjectID uint   `json:"projectid"`
 }
 
 type QueueUserMap struct {
 	gorm.Model
-	UserId  string
-	QueueId string
+	UserID  uint
+	QueueID uint
 }

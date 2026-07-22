@@ -16,9 +16,13 @@ func CreateQueue(newQueue schema.Queue) schema.Queue {
 // 	return updateUser
 // }
 
-func GetQueues() []schema.Queue {
+func GetQueues(projectid string) []schema.Queue {
 	Connect()
 	var Queues []schema.Queue
-	DB.Find(&Queues)
+	if projectid == "" {
+		DB.Find(&Queues)
+	} else {
+		DB.Where("project_id = ?", projectid).Find(&Queues)
+	}
 	return Queues
 }

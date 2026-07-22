@@ -1,6 +1,8 @@
 package repository
 
-import "github.com/manojpethe/itsm-service/appserver/schema"
+import (
+	"github.com/manojpethe/itsm-service/appserver/schema"
+)
 
 func CreateQUMap(newQUMap schema.QueueUserMap) schema.QueueUserMap {
 	Connect()

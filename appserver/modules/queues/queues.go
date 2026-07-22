@@ -55,7 +55,10 @@ func GetQueueDetails(c *gin.Context) {
 
 	// 2. Fetch details from service layer
 	response := queueService.GetQueueDetails(queueid)
-
+	// fmt.Println("debug = ", response)
 	// 3. Send successful response
+	if len(response) == 0 {
+		c.IndentedJSON(http.StatusOK, "[]")
+	}
 	c.IndentedJSON(http.StatusOK, response)
 }

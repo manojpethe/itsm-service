@@ -56,7 +56,7 @@ func StartServer() {
 
 	appServer.GET("/api/queues", queues.GetQueues)
 	appServer.POST("/api/queues", queues.CreateQueue)
-	appServer.POST("/api/queues/addUserToQueue", queues.AddUserToQueue)
+	appServer.POST("/api/queues/adduser", queues.AddUserToQueue)
 	appServer.GET("/api/queues/:id", queues.GetQueueDetails)
 
 	// Start and run the server on localhost:8080

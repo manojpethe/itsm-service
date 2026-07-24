@@ -31,6 +31,6 @@ type Queue struct {
 
 type QueueUserMap struct {
 	gorm.Model
-	UserID  uint
-	QueueID uint
+	UserID  uint `json:"userid"`
+	QueueID uint `json:"queueid"`
 }

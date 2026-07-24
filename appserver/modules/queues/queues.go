@@ -58,3 +58,14 @@ func GetQueueDetails(c *gin.Context) {
 	// 3. Send successful response
 	c.IndentedJSON(http.StatusOK, response)
 }
+
+func DelUserFromQueue(c *gin.Context) {
+	var QUMap schema.QueueUserMap
+	if err := c.ShouldBindJSON(&QUMap); err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	var response = queueService.DelUserFromQueue(QUMap)
+	c.IndentedJSON(http.StatusOK, response)
+
+}

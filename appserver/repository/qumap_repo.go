@@ -1,6 +1,8 @@
 package repository
 
 import (
+	"fmt"
+
 	"github.com/manojpethe/itsm-service/appserver/schema"
 )
 
@@ -25,4 +27,11 @@ func GetQueueUsers(queueid int) []schema.QueueUsers {
 
 	DB.Raw(query, queueid).Scan(&users)
 	return users
+}
+
+func DeleteQUMap(QUMap schema.QueueUserMap) schema.QueueUserMap {
+	Connect()
+	fmt.Println(QUMap.QueueID, QUMap.UserID)
+	DB.Where("user_id = ? AND queue_id = ?", QUMap.UserID, QUMap.QueueID).Unscoped().Delete(&QUMap)
+	return QUMap
 }

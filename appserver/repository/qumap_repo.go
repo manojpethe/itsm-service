@@ -12,7 +12,7 @@ func CreateQUMap(newQUMap schema.QueueUserMap) schema.QueueUserMap {
 
 func GetQueueUsers(queueid int) []schema.QueueUsers {
 	Connect()
-	var users []schema.QueueUsers
+	users := []schema.QueueUsers{}
 
 	query := `
         SELECT id, name 

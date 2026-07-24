@@ -10,6 +10,13 @@ func CreateQueue(newQueue schema.Queue) schema.Queue {
 	return newQueue
 }
 
+func DeleteQueue(queueid int) schema.Queue {
+	Connect()
+	Queue := schema.Queue{}
+	DB.Where("ID = ?", queueid).Unscoped().Delete(&Queue)
+	return Queue
+}
+
 // func UpdateQueue(userID int, updateUser schema.Queue) schema.Queue {
 // 	var user schema.Queue
 // 	DB.Model(&user).Where("id = ?", userID).Updates(updateUser)

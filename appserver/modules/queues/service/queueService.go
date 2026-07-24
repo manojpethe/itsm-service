@@ -24,6 +24,11 @@ func GetQueueDetails(queueid int) []schema.QueueUsers {
 	return queueUsers
 }
 
+func DeleteQueueService(queueid int) schema.Queue {
+	Queue := repository.DeleteQueue(queueid)
+	return Queue
+}
+
 func DelUserFromQueue(QUMap schema.QueueUserMap) schema.QueueUserMap {
 	deletedMap := repository.DeleteQUMap(QUMap)
 	return deletedMap

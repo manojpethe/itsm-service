@@ -56,6 +56,7 @@ func StartServer() {
 
 	appServer.GET("/api/queues", queues.GetQueues)
 	appServer.POST("/api/queues", queues.CreateQueue)
+	appServer.DELETE("/api/queues/:id", queues.DeleteQueue)
 	appServer.POST("/api/queues/user", queues.AddUserToQueue)
 	appServer.DELETE("/api/queues/user", queues.DelUserFromQueue)
 	appServer.GET("/api/queues/:id", queues.GetQueueDetails)

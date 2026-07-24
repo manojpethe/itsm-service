@@ -35,6 +35,16 @@ func CreateQueue(c *gin.Context) {
 	c.IndentedJSON(http.StatusCreated, response)
 }
 
+func DeleteQueue(c *gin.Context) {
+	queueid, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid queue id"})
+		return // Exits handler without returning a value
+	}
+	var response = queueService.DeleteQueueService(queueid)
+	c.IndentedJSON(http.StatusOK, response)
+}
+
 func AddUserToQueue(c *gin.Context) {
 	var newQUMap schema.QueueUserMap
 	if err := c.ShouldBindJSON(&newQUMap); err != nil {
